@@ -1,0 +1,73 @@
+{% extends "layaout.html" %}
+
+{% block script %}
+$(function () {
+    console.log("jquery ready");
+
+    $('.defaultKeypad').keypad({
+        clearText: 'Borrar',
+        backText: 'Atras',
+        closeText: 'Cerrar',
+        layout: ['789' + $.keypad.CLOSE,
+        '456' + $.keypad.CLEAR,
+        '123' + $.keypad.BACK,
+       '/.0' + $.keypad.SPACE]
+    });
+    console.log("tecladovirtual ok");
+});
+
+{% endblock %}
+
+{% block contenido %}
+
+<form action="/Acumuladores" method="post">
+
+    <div class="hero-unit">
+        <legend>PROGRAMA ACUMULADORES</legend>
+
+
+        <div class="controls controls-row">
+            <input type="text" name="operario" class="span2 defaultKeypad" placeholder="Operario" id="operario"/>
+            <input type="text" name="of" class="span2 defaultKeypad" placeholder="OF ..."  id="of" />
+            <input type="text" name="peso" class="span2 defaultKeypad"
+            placeholder="Peso(gr)" id="peso"/>
+            <input type="text" name="volumen" class="span2 defaultKeypad"
+            placeholder="Volumen(gr=cm3)" id="volumen"/>
+        </div>
+
+        <div class="controls controls-row">
+            <button type="submit" class="btn btn-large btn-primary" id="comprobar">Comprobar</button>
+        </div>
+    </div>
+</form>
+
+<div id="resultado">
+
+    <div id="errores">
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+        <ul>
+            {% for msg in errors  %}
+            <li> {{ msg }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <div id="imagen">
+        {% if request.method == 'POST' %}
+            {% if test.resultado %}
+            <img src="{{ url_for('static', filename='img/ok.png') }}" alt="OK" />
+            {% else %}
+            <img src="{{ url_for('static', filename='img/bad.png') }}"
+            alt="ERROR" />
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+
