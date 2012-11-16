@@ -6,10 +6,8 @@ from test import TestAcumuladores
 from mongoengine import connect
 import logging
 
-
 app = Flask(__name__)
 app.debug = True
-
 
 file_handler = logging.FileHandler('app.log')
 app.logger.addHandler(file_handler)
@@ -19,7 +17,7 @@ connect("test1")
 
 @app.route("/")
 def index():
-    return render_template("hello.html")
+    return render_template("index.html")
 
 def validarDatosAcumuladores(request, test):
     error = False
@@ -55,6 +53,10 @@ def validarDatosAcumuladores(request, test):
     test.volumen = volumen
     return not error
 
+@app.route("/InformeAcumuladores", methods=['GET', 'POST'])
+def informeAcumuladores():
+    app.logger.info("")
+    return render_template("InformeAcumuladores.html")
 
 @app.route("/Acumuladores", methods=['GET', 'POST'])
 def testAcumuladores():
