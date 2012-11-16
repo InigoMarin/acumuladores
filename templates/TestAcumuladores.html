@@ -1,20 +1,24 @@
 {% extends "layaout.html" %}
 
 {% block script %}
-$(function () {
-    console.log("jquery ready");
 
-    $('.defaultKeypad').keypad({
-        clearText: 'Borrar',
-        backText: 'Atras',
-        closeText: 'Cerrar',
-        layout: ['789' + $.keypad.CLOSE,
-        '456' + $.keypad.CLEAR,
-        '123' + $.keypad.BACK,
-       '/.0' + $.keypad.SPACE]
+<script type="text/javascript">
+    $(function () {
+        console.log("jquery ready");
+
+        $('.defaultKeypad').keypad({
+            clearText: 'Borrar',
+            backText: 'Atras',
+            closeText: 'Cerrar',
+            layout: ['789' + $.keypad.CLOSE,
+            '456' + $.keypad.CLEAR,
+            '123' + $.keypad.BACK,
+            '/.0' + $.keypad.SPACE]
+        });
+        console.log("tecladovirtual ok");
     });
-    console.log("tecladovirtual ok");
-});
+
+</script>
 
 {% endblock %}
 

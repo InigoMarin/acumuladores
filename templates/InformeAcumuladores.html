@@ -1,16 +1,45 @@
 {% extends "layaout.html" %}
+
+{% block css %}
+    <link href="{{ url_for('static', filename='css/flexigrid.pack.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block script %} 
+    <script src="{{ url_for('static',filename='js/flexigrid.pack.js') }}"
+
+    <script type="text/javascript" charset="utf-8">
+
+    $('#datos').flexigrid();
+
+
+    </script>
+
+{% endblock %}
+
 {% block contenido %}
 
 <!-- Main hero unit for a primary marketing message or call to action -->
-    <img src="{{ url_for('static',filename='img/logo.png') }}" alt="" />
+
+<img src="{{ url_for('static',filename='img/logo.png') }}" alt="" />
 
 <!-- Example row of columns -->
 <div class="row">
     <h1>Esto es una prueba </h1>
+    <table id="datos">    
+        <thead>
+            <tr>
+                <th>COL1</th>
+                <th>COL2</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 <hr>
 
 <footer>
     <p>&copy; Company 2012</p>
 </footer>
+
 {% endblock %}
