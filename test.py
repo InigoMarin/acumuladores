@@ -1,6 +1,8 @@
 from mongoengine import Document, StringField, FloatField, IntField
 from mongoengine import DateTimeField, BooleanField
 from datetime import datetime
+from helper import mongo_to_dict_helper
+
 
 class TestAcumuladores(Document):
     operario = IntField(required=True)
@@ -16,7 +18,7 @@ class TestAcumuladores(Document):
 
     def __unicode__(self):
         datos = "\n"
-        datos += "Operario :" + self.operario + "\n"
+        datos += "Operario :" + str(self.operario) + "\n"
         datos += "OF       :" + self.of + "\n"
         datos += "Fecha    :" + str(self.fecha) + "\n"
         datos += "Peso     :" + str(self.peso) + "\n"
@@ -30,3 +32,6 @@ class TestAcumuladores(Document):
             self.resultado = True
         else:
             self.resultado = False
+
+    def to_dict(self):
+        return mongo_to_dict_helper(self)

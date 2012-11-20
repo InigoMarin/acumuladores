@@ -4,14 +4,17 @@ from flask import render_template
 from flask import request
 from test import TestAcumuladores
 from mongoengine import connect
-import logging
+#import logging
+import json
 
 app = Flask(__name__)
 app.debug = True
 
+'''
 file_handler = logging.FileHandler('app.log')
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
+'''
 app.secret_key = 'Testeo acumuladoresdsfdfdkjfsjgdjhfkjljkl'
 connect("test1")
 
@@ -55,24 +58,32 @@ def validarDatosAcumuladores(request, test):
 
 @app.route("/InformeAcumuladores", methods=['GET', 'POST'])
 def informeAcumuladores():
-    app.logger.info("")
+    #app.logger.info("")
     return render_template("InformeAcumuladores.html")
 
 @app.route("/Acumuladores", methods=['GET', 'POST'])
 def testAcumuladores():
-    app.logger.info("TESTEAR ACUMULADORES")
+    #app.logger.info("TESTEAR ACUMULADORES")
     if request.method == 'GET':
-        app.logger.info("\tGET")
+        #app.logger.info("\tGET")
         return render_template("TestAcumuladores.html")
     else:
-        app.logger.info("\tPOST")
+        #app.logger.info("\tPOST")
         test = TestAcumuladores()
         if validarDatosAcumuladores(request, test):
-            app.logger.info("\tDATOS VALIDOS")
+            #app.logger.info("\tDATOS VALIDOS")
             test.testear()
             app.logger.info(test)
             test.save()
         return render_template("TestAcumuladores.html", test=test)
+
+@app.route("/service/acumuladores", methods=['GET', 'POST'])
+def listarAcumuladores():
+    datos = TestAcumuladores.objects.all()
+    result = []
+    for dato in datos:
+        result.append(dato.to_dict())
+    return json.dumps(result)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
