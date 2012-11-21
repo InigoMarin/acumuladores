@@ -6,7 +6,6 @@ import json
 connect("test1")
 datos = TestAcumuladores.objects.all()
 
-import ipdb; ipdb.set_trace() # BREAKPOINT
 
 lista = []
 for dato in datos:

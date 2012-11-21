@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+	ServerAdmin informatica@domusa.es
+
+	DocumentRoot /home/ima/acumuladores/http
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /home/ima/acumuladores/http>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+	
+
+</VirtualHost>

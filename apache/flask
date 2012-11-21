@@ -1,0 +1,28 @@
+<VirtualHost *:80>
+	ServerAdmin informatica@domusa.es
+
+	DocumentRoot /home/ima/acumuladores/http
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /home/ima/acumuladores/http>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+	
+	#  ---- CONFIGURE WSGI LISTENER ----
+	
+	WSGIDaemonProcess flaskapp user=www-data group=www-data threads=5
+	WSGIScriptAlias /domusa /home/ima/acumuladores/app.wsgi
+
+	<Directory /home/ima/acumuladores>
+		WSGIProcessGroup flaskapp
+		WSGIApplicationGroup %{GLOBAL}
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+</VirtualHost>

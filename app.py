@@ -9,12 +9,14 @@ import json
 
 app = Flask(__name__)
 app.debug = True
+app.static_url_path= 'http://debian6'
 
 '''
 file_handler = logging.FileHandler('app.log')
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 '''
+
 app.secret_key = 'Testeo acumuladoresdsfdfdkjfsjgdjhfkjljkl'
 connect("test1")
 

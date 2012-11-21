@@ -2,22 +2,21 @@
 {% block contenido %}
 
 <!-- Main hero unit for a primary marketing message or call to action -->
-    <img src="/static/img/logo.png" alt="" />
+<img src="http://debian6/static/img/logo.png" alt="" />
 
 <!-- Example row of columns -->
 <div class="row">
     <div class="span4">
         <h2>ACUMULADORES</h2>
         <p> <a class="btn btn-small" href="{{ url_for('testAcumuladores') }}">CONTROL DENSIDAD &raquo</a></p>
-        <p><a class="btn btn-small" href="{{ url_for('informeAcumuladores') }}">INFORME &raquo</a></p>
+        <p> <a class="btn btn-small" href="{{ url_for('informeAcumuladores') }}">INFORME &raquo</a></p>
     </div>
 
     <div class="span4">
-        <h2> JSON </h2>
-        <p> <a class="btn btn-small" href="{{
-            url_for('listarAcumuladores')}}">ACUMULADORES &raquuo</a></p>
+        <h2>JSON</h2>
+        <p> <a class="btn btn-small" href="{{ url_for('listarAcumuladores') }}">ACUMULADORES &raquo</a></p>
     </div>
-    </div>
+
     <div class="span4">
         <h2>Heading</h2>
         <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -27,6 +26,6 @@
 <hr>
 
 <footer>
-    <p>&copy; Company 2012</p>
+    <p>&copy; Domusa 2012</p>
 </footer>
 {% endblock %}
