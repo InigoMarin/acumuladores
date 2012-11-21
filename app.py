@@ -2,14 +2,15 @@ from flask import Flask
 from flask import flash
 from flask import render_template
 from flask import request
+from flask import jsonify
 from test import TestAcumuladores
+
 from mongoengine import connect
+from flexigrid import JSONWrapper
 #import logging
-import json
 
 app = Flask(__name__)
 app.debug = True
-app.static_url_path= 'http://debian6'
 
 '''
 file_handler = logging.FileHandler('app.log')
@@ -82,10 +83,11 @@ def testAcumuladores():
 @app.route("/service/acumuladores", methods=['GET', 'POST'])
 def listarAcumuladores():
     datos = TestAcumuladores.objects.all()
-    result = []
+    l = []
     for dato in datos:
-        result.append(dato.to_dict())
-    return json.dumps(result)
+        l.append(dato.to_dict())
+    d = JSONWrapper(l)
+    return jsonify(page=0, total=d.total, rows=d.rows)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
