@@ -1,4 +1,0 @@
-acumuladores
-============
-
-acumuladores
