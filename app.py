@@ -19,7 +19,7 @@ app.logger.setLevel(logging.INFO)
 '''
 
 app.secret_key = 'Testeo acumuladoresdsfdfdkjfsjgdjhfkjljkl'
-connect("test1")
+connect("test2")
 
 @app.route("/")
 def index():
@@ -76,7 +76,7 @@ def testAcumuladores():
         if validarDatosAcumuladores(request, test):
             #app.logger.info("\tDATOS VALIDOS")
             test.testear()
-            app.logger.info(test)
+            #app.logger.info(test)
             test.save()
         return render_template("TestAcumuladores.html", test=test)
 

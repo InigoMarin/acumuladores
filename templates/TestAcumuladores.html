@@ -62,10 +62,9 @@
     <div id="imagen">
         {% if request.method == 'POST' %}
             {% if test.resultado %}
-            <img src="{{ url_for('static', filename='img/ok.png') }}" alt="OK" />
+            <img src="http://debian6/static/img/ok.png" alt="OK" />
             {% else %}
-            <img src="{{ url_for('static', filename='img/bad.png') }}"
-            alt="ERROR" />
+            <img src="http://debian6/static/img/bad.png" alt="ERROR" />
             {% endif %}
         {% endif %}
     </div>
