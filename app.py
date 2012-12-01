@@ -82,12 +82,30 @@ def testAcumuladores():
 
 @app.route("/service/acumuladores", methods=['GET', 'POST'])
 def listarAcumuladores():
-    datos = TestAcumuladores.objects.all()
+
+    limit = int(request.args['rp'])
+    page = int(request.args['page'])
+    skip = (page - 1) * limit
+
+    qtype = request.args['qtype']
+    query = request.args['query']
+
+    if len(query) > 0:
+        if (str(qtype) == 'of'):
+            qquery = TestAcumuladores.objects(of__contains=query)
+        else:
+            qquery = TestAcumuladores.objects(operario__contains=int(query))
+    else:
+        qquery = TestAcumuladores.objects.all()
+    total = qquery.count()
+    datos = qquery.skip(skip).limit(limit)
     l = []
     for dato in datos:
         l.append(dato.to_dict())
     d = JSONWrapper(l)
-    return jsonify(page=0, total=d.total, rows=d.rows)
+    d.total = total
+    d.page = page
+    return jsonify(page=d.page, total=d.total, rows=d.rows)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

@@ -19,12 +19,12 @@
                 title: 'Control Densidad',
                 method: 'get',
                 colModel : [
-                    {display: 'OF', name : 'of', width : 80, sortable : true, align: 'center'},
-                    {display: 'OPERARIO', name : 'operario', width : 80, sortable : true, align: 'left'},
-                    {display: 'FECHA', name : 'fecha', width : 80, sortable : true, align: 'left'},
-                    {display: 'RESULTADO', name : 'resultado', width : 80, sortable : true, align: 'left'},
-                    {display: 'VOLUMEN', name : 'volumen', width : 80, sortable : true,align: 'right'},
-                    {display: 'PESO', name : 'peso', width : 80, sortable : true,align: 'right'},
+                    {display: 'OF', name : 'of', width : 80, sortable : false, align: 'center'},
+                    {display: 'OPERARIO', name : 'operario', width : 80, sortable : false, align: 'left'},
+                    {display: 'FECHA', name : 'fecha', width : 140, sortable : false, align: 'left'},
+                    {display: 'RESULTADO', name : 'resultado', width : 80, sortable : false, align: 'left'},
+                    {display: 'VOLUMEN', name : 'volumen', width : 80, sortable : false,align: 'right'},
+                    {display: 'PESO', name : 'peso', width : 80, sortable : false,align: 'right'},
                     ],
                 searchitems: [
                     {display: 'OF', name : 'of'},
@@ -36,7 +36,7 @@
                 usepager: true,
                 singleSelect: true,
                 useRp: true,
-                rp: 2,
+                rp: 10,
                 useRp : true,
                 height: 'auto'
             });
@@ -53,7 +53,7 @@
 
 <!-- Example row of columns -->
 <div class="row">
-    <h1>INFORME</h1>
+    <h1>INFORME CONTROL DENSIDAD</h1>
     <table class="flexme">
        <!-- 
         <thead>
